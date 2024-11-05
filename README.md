@@ -17,3 +17,8 @@ $ make up-db // create postgres container
 $ make migrate-up
 $ make run
 ```
+
+To build and run the project on top of docker
+```
+$ make build
+```

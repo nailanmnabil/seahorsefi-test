@@ -8,6 +8,10 @@ migrate-up:
 migrate-down:
 	migrate -database postgres://postgres:password@localhost:5432/seahorsefi?sslmode=disable -path ./migrations down
 
+build:
+	docker build -t seahorsefi-test-nabil -f deployments/Dockerfile .
+	docker run -d --name seahorsefi-test-nabil -p 8080:8080 seahorsefi-test-nabil
+		
 up-db:
 	docker run --name seahorsefi-db \
 		-e POSTGRES_DB=seahorsefi \
