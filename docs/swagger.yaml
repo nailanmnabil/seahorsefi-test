@@ -1,0 +1,71 @@
+basePath: /
+definitions:
+  entities.Event:
+    properties:
+      address:
+        type: string
+      block_number:
+        type: integer
+      closed_at:
+        type: string
+      created_at:
+        type: string
+      event_type:
+        type: string
+      id:
+        type: integer
+      last_calculated_at:
+        type: string
+      transaction_hash:
+        type: string
+      wallet_id:
+        type: string
+    type: object
+  entities.Wallet:
+    properties:
+      address:
+        type: string
+      created_at:
+        type: string
+      event:
+        items:
+          $ref: '#/definitions/entities.Event'
+        type: array
+      id:
+        type: string
+      points:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This is a documentation of SeahorseFi off-chain point tracker server.
+  termsOfService: http://swagger.io/terms/
+  title: SeahorseFi API Doc
+  version: "1.0"
+paths:
+  /wallets/points:
+    get:
+      consumes:
+      - application/json
+      description: Get all wallets point
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response with list of wallets
+          schema:
+            items:
+              $ref: '#/definitions/entities.Wallet'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all wallets point
+      tags:
+      - Wallet
+swagger: "2.0"
